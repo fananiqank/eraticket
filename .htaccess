@@ -1,0 +1,107 @@
+RewriteEngine on 
+RewriteBase /eraticket/
+#RewriteCond %{HTTPS} off
+#RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
+Options All -Indexes
+RewriteRule ^index/?$ index.php
+RewriteRule ^wo/?$ index.php?p=wo
+RewriteRule ^profil-m/?$ index.php?x=profil-m
+RewriteRule ^profil/([0-9]+)/?$ index.php?x=profil&id=$1
+RewriteRule ^laporan/([0-9]+)/?$ index.php?x=lap&id=$1 
+RewriteRule ^saham/([0-9]+)/?$ index.php?x=lap_shm&id=$1
+RewriteRule ^personal/?$ index.php?x=personal
+RewriteRule ^personal/([0-9]+)/?$ index.php?x=personal&id=$1
+RewriteRule ^personal-m/([0-9]+)/?$ index.php?x=tammob&id=$1
+RewriteRule ^bisnis/?$ index.php?x=bisnis&id=$1
+RewriteRule ^bisnis/([0-9]+)/?$ index.php?x=bisnis&id=$1
+RewriteRule ^bisnis-m/([0-9]+)/?$ index.php?x=tammob&id=2
+RewriteRule ^layanan/?$ index.php?x=layanan&id=$1
+RewriteRule ^layanan/([0-9]+)/?$ index.php?x=layanan&id=$1
+RewriteRule ^layanan-m/([0-9]+)/?$ index.php?x=tammob&id=3
+RewriteRule ^produk-m/?$ index.php?x=pro-mobile
+RewriteRule ^umkm/([0-9]+)/?$ index.php?x=umkm&id=$1
+RewriteRule ^umkm/([0-9]+)/([0-9]+)/?$ index.php?x=umkm&id=$1&h=$2
+RewriteRule ^umkm-m/?$ index.php?x=umkm-mobile
+RewriteRule ^berita/?$ index.php?x=berita
+RewriteRule ^berita/page-([0-9]+)/?$ index.php?x=detber&id=$1
+RewriteRule ^berita/hal-([0-9]+)/?$ index.php?x=berita&h=$1
+RewriteRule ^promo/?$ index.php?x=promo
+RewriteRule ^promo/page-([0-9]+)/?$ index.php?x=detpro&id=$1
+RewriteRule ^promo/hal-([0-9]+)/?$ index.php?x=promo&h=$1
+RewriteRule ^epaper/?$ index.php?x=epaper
+RewriteRule ^epaper/hal-([0-9]+)/?$ index.php?x=epaper&h=$1
+RewriteRule ^csr/?$ index.php?x=csr
+RewriteRule ^csr/page-([0-9]+)/?$ index.php?x=detcsr&id=$1
+RewriteRule ^csr/hal-([0-9]+)/?$ index.php?x=scr&h=$1
+RewriteRule ^penghargaan/?$ index.php?x=phg
+RewriteRule ^penghargaan/page-([0-9]+)/?$ index.php?x=detphg&id=$1
+RewriteRule ^penghargaan/hal-([0-9]+)/?$ index.php?x=phg&h=$1
+RewriteRule ^lelang/?$ index.php?x=lelang
+RewriteRule ^lelang/page-([0-9]+)/?$ index.php?x=detlelang&id=$1
+RewriteRule ^lelang/hal-([0-9]+)/?$ index.php?x=lelang&h=$1
+RewriteRule ^sitemap/?$ index.php?x=sitemap
+RewriteRule ^karir/?$ index.php?x=karir
+RewriteRule ^karir/page-([0-9]+)/?$ index.php?x=detkarir&id=$1
+RewriteRule ^karir/hal-([0-9]+)/?$ index.php?x=karir&h=$1
+RewriteRule ^tips/page-([0-9]+)/?$ index.php?x=isipage&id=$1
+RewriteRule ^kebijakan/?$ index.php?x=kbj
+RewriteRule ^sk/?$ index.php?x=sk
+RewriteRule ^search/?$ index.php?x=cari
+RewriteRule ^pengaduan/?$ http://bprjatim.co.id/default/pengaduan.php
+RewriteRule ^pengajuan/?$ http://bprjatim.co.id/default/tesaju.php 
+
+RewriteCond %{THE_REQUEST} (%0A|%0D) [NC,OR]
+RewriteCond %{QUERY_STRING} (\.\.\/|\.\.) [OR]
+RewriteCond %{QUERY_STRING} [a-zA-Z0-9_]=http:// [OR]
+RewriteCond %{QUERY_STRING} [a-zA-Z0-9_]=(..//?)+ [OR]
+RewriteCond %{QUERY_STRING} [a-zA-Z0-9_]=/([a-z0-9_.]//?)+ [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} (libwww-perl|wget|python|nikto|curl|scan|java|winhttp|clshttp|loader) [NC,OR]
+RewriteCond %{QUERY_STRING} [a-zA-Z0-9_]=http:// [OR]
+RewriteCond %{QUERY_STRING} [a-zA-Z0-9_]=(..//?)+ [OR]
+RewriteCond %{QUERY_STRING} [a-zA-Z0-9_]=/([a-z0-9_.]//?)+ [NC,OR]
+RewriteCond %{QUERY_STRING} =PHP[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12} [NC,OR]
+RewriteCond %{QUERY_STRING} (./|../|.../)+(motd|etc|bin) [NC,OR]
+RewriteCond %{QUERY_STRING} (localhost|loopback|127.0.0.1) [NC,OR]
+RewriteCond %{QUERY_STRING} (<|>|'|%0A|%0D|%27|%3C|%3E|%00) [NC,OR]
+RewriteCond %{QUERY_STRING} union([^s]*s)+elect [NC,OR]
+RewriteCond %{QUERY_STRING} union([^a]*a)+ll([^s]*s)+elect [NC,OR]
+RewriteCond %{QUERY_STRING} GLOBALS(=|[|%[0-9A-Z]{0,2}) [OR]
+RewriteCond %{QUERY_STRING} _REQUEST(=|[|%[0-9A-Z]{0,2}) [OR]
+RewriteCond %{QUERY_STRING} (NULL|OUTFILE|LOAD_FILE) [OR]
+RewriteCond %{QUERY_STRING} =|w| [NC,OR]
+RewriteCond %{QUERY_STRING} ^(.*)/self/(.*)$ [NC,OR]
+RewriteCond %{QUERY_STRING} ^(.*)cPath=http://(.*)$ [NC,OR]
+RewriteCond %{QUERY_STRING} (<|%3C).*script.*(>|%3E) [NC,OR]
+RewriteCond %{QUERY_STRING} (<|%3C)([^s]*s)+cript.*(>|%3E) [NC,OR]
+RewriteCond %{QUERY_STRING} (<|%3C).*iframe.*(>|%3E) [NC,OR]
+RewriteCond %{QUERY_STRING} (<|%3C)([^i]*i)+frame.*(>|%3E) [NC,OR]
+RewriteCond %{QUERY_STRING} [a-zA-Z0-9_]=http:// [OR]
+RewriteCond %{QUERY_STRING} [a-zA-Z0-9_]=(..//?)+ [OR]
+RewriteCond %{QUERY_STRING} [a-zA-Z0-9_]=/([a-z0-9_.]//?)+ [NC,OR]
+RewriteCond %{QUERY_STRING} =PHP[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12} [NC,OR]
+RewriteCond %{QUERY_STRING} base64_encode.*(.*) [NC,OR]
+RewriteCond %{QUERY_STRING} base64_(en|de)code[^(]*([^)]*) [NC,OR]
+RewriteCond %{REQUEST_METHOD} ^(HEAD|TRACE|DELETE|TRACK|DEBUG) [NC]
+RewriteRule ^(.*)$ - [F,L]
+
+#RewriteCond %{QUERY_STRING} (sp_executesql) [NC]
+#RewriteRule ^(.*)$ - [F,L]
+
+#<IfModule mod_deflate.c>
+
+#<FilesMatch "\.(htm|html|css|js|php|jpe?g|ttf|txt|svg)$">
+#SetOutputFilter DEFLATE
+#</FilesMatch>
+
+#<filesMatch ".(gif|png|jpg|jpeg|ico|pdf|css|htm|html|txt)$">
+#Header set Cache-Control "max-age=2592000"
+#</filesMatch>
+
+
+
+#</IfModule>
+
+#order deny,allow
+#deny from all
+#allow from 36.74.185.168
+#allow from 202.62.16.40
