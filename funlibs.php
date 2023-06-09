@@ -27,8 +27,8 @@ class Database extends PDO{
     public function __construct()
 	{ 
         $this->engine	= 'mysql'; 
-        $this->host	  	= 'localhost'; 
-		$this->database = 'itassets';  
+        $this->host	  	= '192.168.31.25'; 
+		$this->database = 'itassets_dev';  
 		$this->user 	= 'root'; 
         $this->pass 	= 'youC1000@';
 		//$this->pass 	= 'sembarang'; 
@@ -723,7 +723,7 @@ class Database extends PDO{
     {
         try {
             $db = @new PDO(
-                "mysql:host=localhost;dbname=itassets",
+                "mysql:host=192.168.31.25;dbname=itassets_dev",
                 'root',
                 'youC1000@',
                 array( PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION )
